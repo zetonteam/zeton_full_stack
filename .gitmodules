@@ -1,0 +1,3 @@
+[submodule "zeton_react"]
+	path = zeton_react
+	url = git@github.com:zetonteam/zeton_react.git
