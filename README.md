@@ -7,6 +7,7 @@ It utilizes the Git submodules concept, which you can familiarize yourself with 
 
 I suggest not using it as a development repository as it needs some more testing yet.  
 
+You need configured connection to GitHub using SSH. You can do it with [this](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) tutorial.
 
 ## SETUP
 1. To clone parent repository along with submodules use following command in the terminal:
@@ -15,9 +16,9 @@ git clone --recurse-submodules $repository_url
 ```  
 (as a $repository_url use this repository url).   
 
-2. Next, go to the zeton_react submodule, and checkout the 'docker-setup' branch.
+2. Next, go to the zeton_react submodule, and checkout the 'develop' branch or your `branch_name`.
 ```
-git checkout docker-setup
+git checkout develop
 ```
 
 3. Go back to the parent directory. Now you should be able to start the project with:   
@@ -37,3 +38,7 @@ make load_data
 6. Now the Dashboard view should present 2 examplary users.
 
 
+7. To update submodules to latest version use command:  
+```
+git pull --recurse-submodules
+```
