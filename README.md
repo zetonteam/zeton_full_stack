@@ -16,9 +16,9 @@ git clone --recurse-submodules $repository_url
 ```  
 (as a $repository_url use this repository url).   
 
-2. Next, go to the zeton_react submodule, and checkout the 'docker-setup' branch.
+2. Next, go to the zeton_react submodule, and checkout the 'develop' branch or your `branch_name`.
 ```
-git checkout docker-setup
+git checkout develop
 ```
 
 3. Go back to the parent directory. Now you should be able to start the project with:   
