@@ -1,3 +1,10 @@
+## About Zeton
+Żeton is a token-based reward system app for neurodivergent children and their families. 
+
+Żeton builds accountability and promotes good habits in home and school environments. It provides positive reinforcement and helps behaviour modification.
+
+As parents, teachers and therapists, we know the daily struggles of children on the autistic spectrum, with learning disabilities or neurodevelopmental disorders. We believe that token economy and behavioural therapy elements should be accessible to everyone, so your kid can thrive at home as well as at school. Our goal is to help children become more and more independent over time, to the point of not needing the app 😊
+
 # zeton_full_stack
 Hello,
 
