@@ -1,0 +1,16 @@
+ports:
+  - port: 3000
+    onOpen: open-browser
+    visibility: public
+
+tasks:
+  - name: Switch git URLs
+    command: sed -i -e 's#git@github.com:#https://github.com/#' .gitmodules .git/config
+  - name: Update submodules
+    command: git submodule update
+  - name: Pull container images
+    command: docker-compose pull
+  - name: Build container images
+    command: docker-compose build
+  - name: Run containers
+    command: docker-compose up
