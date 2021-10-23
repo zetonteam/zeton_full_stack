@@ -11,7 +11,7 @@ tasks:
       sed -i -e 's#git@github.com:#https://github.com/#' .gitmodules .git/config && \
       git submodule update && \
       sed -i -e "s#http://localhost:8000#$(gp url 8000)#" docker-compose.yml && \
-      sed -i -e "s#ALLOWED_HOSTS = []#ALLOWED_HOSTS = ['*']#" zeton_django/zeton_backend/settings.py && \
+      sed -i -e "s#ALLOWED_HOSTS = \[\]#ALLOWED_HOSTS = \['*'\]#" zeton_django/zeton_backend/settings.py && \
       docker-compose pull && \
       docker-compose build && \
       docker-compose up -d
