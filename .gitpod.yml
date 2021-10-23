@@ -10,7 +10,7 @@ tasks:
     command: |
       sed -i -e 's#git@github.com:#https://github.com/#' .gitmodules .git/config && \
       git submodule update && \
-      sed -i -e "s#http://localhost:8000#$(gp url 8000)#" -e 's#python zeton_django/manage.py migrate#\1; python manage.py loaddata /code/fixtures/*.json#' docker-compose.yml && \
+      sed -i -e "s#http://localhost:8000#$(gp url 8000)#" -e 's#\(python zeton_django/manage.py migrate\)#\1; python manage.py loaddata /code/fixtures/*.json#' docker-compose.yml && \
       sed -i -e "s#ALLOWED_HOSTS = \[\]#ALLOWED_HOSTS = \['*'\]#" zeton_django/zeton_backend/settings.py && \
       docker-compose pull && \
       docker-compose build && \
