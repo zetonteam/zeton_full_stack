@@ -5,6 +5,8 @@
 
 As parents, teachers and therapists, we know the daily struggles of children on the autistic spectrum, with learning disabilities or neurodevelopmental disorders. We believe that token economy and behavioural therapy elements should be accessible to everyone, so your kid can thrive at home as well as at school. Our goal is to help children become more and more independent over time, to the point of not needing the app 😊
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/zetonteam/zeton_full_stack)
+
 # zeton_full_stack
 Hello,
 

@@ -13,6 +13,9 @@ services:
     depends_on:
       - db
       - migration
+    networks:
+      - frontend
+      - db
   db:
     image: postgres:13
     volumes:
@@ -21,6 +24,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
+    networks:
+      - db
   react-client:
     build: ./zeton_react
     volumes:
@@ -28,14 +33,24 @@ services:
       - /usr/src/app/node_modules
     ports:
       - 3000:3000
+    environment:
+      REACT_APP_API_URL: http://localhost:8000
     stdin_open: true
+    networks:
+      - frontend
   migration: 
     build: ./zeton_django
     command: ["bash", "-c",  "while !</dev/tcp/db/5432; do sleep 1; done; python zeton_django/manage.py migrate"]
     volumes:
-        - .:/code
+      - .:/code
     depends_on:
-        -   db
+      - db
+    networks:
+      - db
 
 volumes:
   postgres_data:
+
+networks:
+  frontend:
+  db:
