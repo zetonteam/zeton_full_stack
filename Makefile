@@ -17,7 +17,7 @@ migrate:
 	docker-compose exec web python manage.py migrate
 
 dbshell:
-	docker-compose exec web bash -c python manage.py dbshell
+	docker-compose exec web bash -c python manage.py shell
 
 psql:
 	docker-compose exec -i db psql -U postgres
