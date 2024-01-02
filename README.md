@@ -23,31 +23,47 @@ You need configured connection to GitHub using SSH. You can do it with [this](ht
 ```
 git clone --recurse-submodules $repository_url
 ```  
-(as a $repository_url use this repository url).   
+(as a $repository_url use this repository url). 
 
-2. Next, go to the zeton_react submodule, and checkout the 'develop' branch or your `branch_name`.
+2. The rest of this guide requires you to run commands in the project directory. Run the following command before moving on.
 ```
+cd zeton_full_stack
+```
+
+
+3. Next, You need to set branch `develop` in submodules `zeton_react` and  `zeton_django`.
+```
+cd zeton_django
 git checkout develop
+cd ../zeton_react
+git checkout develop
+cd ..
 ```
 
-3. Go back to the parent directory. Now you should be able to start the project with:   
+4. To start the project make sure you are in the `zeton_full_stack` directory and run command: 
 ```
-docker-compose up --build
+docker compose up --build
 ```  
-4. You can access the React client at  
+or use the command from Makefile
+
+```commandline
+make build
+```
+
+5. You can access the React client at  
 ```
 localhost:3000
 ```
 
-5. The Dashboard view is empty now, as no data hasn't been fetched from the API yet.  
+6. The Dashboard view is empty now, as no data hasn't been fetched from the API yet.  
 You can load the data from Django fixutres using:  
 ```
 make load_data
 ```
-6. Now the Dashboard view should present 2 examplary users.
+7. Now the Dashboard view should present 2 examplary users.
 
 
-7. To update submodules to latest version use command:  
+8. To update submodules to latest version use command:  
 ```
 git pull --recurse-submodules
 ```
