@@ -19,6 +19,9 @@ drop:
 load_data:
 	docker compose exec web bash -c "python manage.py loaddata fixtures/*.json"
 
+dump_data_users:
+	docker compose exec web bash -c "python manage.py dumpdata --indent 4 users.customuser" > zeton_django/fixtures/users.json
+
 createsuperuser:
 	docker compose exec web python manage.py createsuperuser
 
