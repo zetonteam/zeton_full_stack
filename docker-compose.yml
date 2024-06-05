@@ -14,7 +14,6 @@ services:
       - db
       - migration
     networks:
-      - frontend
       - db
   db:
     image: postgres:16
@@ -31,15 +30,12 @@ services:
   react-client:
     build: ./zeton_react
     volumes:
-      - ./zeton_react/:/usr/src/app/
-      - /usr/src/app/node_modules
+      - ./zeton_react/:/app/
+      - /app/node_modules
     ports:
       - 3000:3000
     environment:
       REACT_APP_API_URL: http://localhost:8000
-    stdin_open: true
-    networks:
-      - frontend
   migration: 
     build: ./zeton_django
     command: ["bash", "-c",  "while !</dev/tcp/db/5432; do sleep 1; done; python zeton_django/manage.py migrate"]
@@ -54,5 +50,4 @@ volumes:
   postgres_data:
 
 networks:
-  frontend:
   db:
