@@ -1,10 +1,10 @@
 up:
 	docker compose up
 
-up-d: 
+up-d:
 	docker compose up -d
 
-build: 
+build:
 	docker compose up --build
 
 build-d:
@@ -36,3 +36,6 @@ dbshell:
 
 psql:
 	docker compose exec -i db psql -U postgres
+
+get-token:
+	bash zeton_django/scripts/get_zeton_token.sh
