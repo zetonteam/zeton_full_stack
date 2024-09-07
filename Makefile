@@ -45,3 +45,6 @@ test-v:
 
 get-token:
 	python3 zeton_django/scripts/get_token.py --u opiekun1 --p opiekun1 | jq ".access"
+
+dump-data-points:
+	docker compose exec web python manage.py dumpdata users.point > zeton_django/fixtures/points.json
