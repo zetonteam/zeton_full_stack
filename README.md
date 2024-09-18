@@ -31,10 +31,9 @@ with [this](https://docs.github.com/en/github/authenticating-to-github/connectin
 1. To clone parent repository along with submodules use following command in the terminal:
 
 ```
-git clone --recurse-submodules $repository_url
+git clone --recurse-submodules git@github.com:zetonteam/zeton_full_stack.git
 ```  
 
-(as a $repository_url use this repository url).
 
 2. The rest of this guide requires you to run commands in the project directory. Run the following command before moving
    on.
@@ -65,6 +64,8 @@ or use the command from Makefile
 make build
 ```
 
+There are many other useful commands you can use. Take a look at the `Makefile`.
+
 5. You can access the React client at
 
 ```
@@ -78,8 +79,14 @@ localhost:3000
 make load_data
 ```
 
-7. Now the Dashboard view should present 2 examplary users.
+* Please note that loading the data is only possible while the application is running.
 
+7. Now the Dashboard view should present 2 examplary users.
+You can log in to platform with the following credentials:
+- login: `opiekun1`
+- password: `opiekun1`
+
+For more details about loaded data, take a look at the files in `zeton_django/fixtures` directory.
 
 8. To update submodules to latest version use command:
 
