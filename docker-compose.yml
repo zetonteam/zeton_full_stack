@@ -1,50 +1,23 @@
-version: "3.8"
-
 services:
-  web:
-    build: ./zeton_django
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./zeton_django/:/code
-    ports:
-      - 8000:8000
-    env_file:
-      - ./zeton_django/env_config/local.env
-    depends_on:
-      - db
-      - migration
-    networks:
-      - db
   db:
-    image: postgres:16
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-    networks:
-      - db
+    extends:
+      file: docker-compose.base.yml
+      service: db
+
+  web:
+    extends:
+      file: docker-compose.base.yml
+      service: web
+
+  migration:
+    extends:
+      file: docker-compose.base.yml
+      service: migration
+
   react-client:
-    build: ./zeton_react
-    volumes:
-      - ./zeton_react/:/app/
-      - /app/node_modules
-    ports:
-      - 3000:3000
-    environment:
-      REACT_APP_API_URL: http://localhost:8000
-  migration: 
-    build: ./zeton_django
-    command: ["bash", "-c",  "while !</dev/tcp/db/5432; do sleep 1; done; python zeton_django/manage.py migrate"]
-    volumes:
-      - .:/code
-    depends_on:
-      - db
-    networks:
-      - db
+    extends:
+      file: docker-compose.base.yml
+      service: react-client
 
 volumes:
   postgres_data:
