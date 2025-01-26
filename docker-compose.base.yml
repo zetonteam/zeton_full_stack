@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+    - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db
+
+  web:
+    build: ./zeton_django
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./zeton_django/env_config/local.env
+    depends_on:
+      - db
+      - migration
+    healthcheck:
+      test: curl -s -o /dev/null localhost:8000
+      interval: 3s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db
+
+  migration:
+    build: ./zeton_django
+    command: ["bash", "-c", "while !</dev/tcp/db/5432; do sleep 1; done; python manage.py migrate"]
+    depends_on:
+      - db
+    networks:
+      - db
+
+  react-client:
+    build: ./zeton_react
+    volumes:
+      - ./zeton_react/:/app/
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      REACT_APP_API_URL: http://localhost:8000
+
+volumes:
+  postgres_data:
+
+networks:
+  db:
